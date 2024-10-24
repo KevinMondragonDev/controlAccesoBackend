@@ -13,7 +13,7 @@ export class Student{
     Matricula:string;
 
     @Column()
-    Nombre:string;
+    NombreCompleto:string;
 
     @Column()
     Inclusion:boolean;
@@ -22,19 +22,37 @@ export class Student{
     Generacion:string;
 
     @Column()
-    Grupo:string;
-
-    @Column()
     Genero:string;
 
     @Column()
-    Cuatrimestre:string;
-
-    @Column()
-    Activo:boolean;
-
-    @Column()
     Carrera:string;
+
+    @Column()
+    Cuatrimestre:number;
+
+    @Column()
+    Grupo:string;
+
+    @Column('text', {
+        unique: true,
+        nullable: true,  // Permitir valores nulos
+    })
+    FolioDeCredencial: string;
+    
+    @Column('text', {
+        unique: true,
+        nullable: true,  // Permitir valores nulos
+    })
+    FolioDeCredencial2: string;
+    
+    @Column()
+    Comentario:string;
+
+    @Column()
+    EstatusDeImpresion:string;
+
+    @Column()
+    Estatus:boolean;
 
     @OneToMany(
         () => StudentImage,
