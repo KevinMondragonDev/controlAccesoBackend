@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { StudentsModule } from './students/students.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CommonModule } from './common/common.module';
+import { EmployeesModule } from './employees/employees.module';
 
 
 
@@ -29,6 +31,8 @@ const DB_USERNAME="postgres";
       //No es comum que se use produccion
       synchronize:true,
     }),
+    CommonModule,
+    EmployeesModule,
 
 
   ],

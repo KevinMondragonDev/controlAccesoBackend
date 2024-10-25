@@ -44,9 +44,6 @@ export class Student{
         nullable: true,  // Permitir valores nulos
     })
     FolioDeCredencial2: string;
-    
-    @Column()
-    Comentario:string;
 
     @Column()
     EstatusDeImpresion:string;
@@ -62,6 +59,33 @@ export class Student{
     images?:StudentImage[];
 
 
+    @BeforeInsert()
+    checkSlugUpdate(){
+        this.NombreCompleto = this.NombreCompleto
+            .toUpperCase()
+            .replaceAll(' ','_')
+            .replaceAll("'",'')
+
+        this.Generacion = this.Generacion
+            .toUpperCase()
+            .replaceAll(' ','_')
+            .replaceAll("'",'')
+        
+        this.Genero = this.Genero
+            .toUpperCase()
+            .replaceAll(' ','_')
+            .replaceAll("'",'')
+        
+        this.Carrera = this.Carrera
+            .toUpperCase()
+            .replaceAll(' ','_')
+            .replaceAll("'",'')
+        
+        this.EstatusDeImpresion = this.EstatusDeImpresion
+            .toUpperCase()
+            .replaceAll(' ','_')
+            .replaceAll("'",'')
+    }
 }
 
 

@@ -1,4 +1,4 @@
-import { IsBoolean, IsIn, IsInt, IsNotEmpty, IsOptional, IsString, IsUUID, MinLength } from 'class-validator';
+import { IsArray, IsBoolean, IsIn, IsInt, IsNotEmpty, IsOptional, IsString, IsUUID, MinLength } from 'class-validator';
 
 export class CreateStudentDto {
 
@@ -8,7 +8,7 @@ export class CreateStudentDto {
 
     @IsString()
     @IsNotEmpty()
-    @MinLength(9)
+    @MinLength(7)
     Matricula: string;
 
     @IsString()
@@ -61,6 +61,10 @@ export class CreateStudentDto {
     @IsNotEmpty()
     Estatus: boolean;
 
+    @IsString({ each:true})
+    @IsArray()
+    @IsOptional()
+    images? :string[];
 }
 
 
