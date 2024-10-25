@@ -9,6 +9,7 @@ import { Student, StudentImage } from './entities';
   imports:[
     TypeOrmModule.forFeature([Student , StudentImage])
   ],
+  exports:[StudentsService],
   providers: [StudentsService],
 })
 export class StudentsModule {}

@@ -40,7 +40,6 @@ export class CreateEmployeeDto {
   FechaDeNacimiento: string;
 
   @IsString()
-  @Matches(/^[A-Z]{3,4}0\d{2}([A-Z]|[0-9]){2}[A-Z0-9]{3}$/) // RFC pattern
   RFC: string;
 
   @IsString()

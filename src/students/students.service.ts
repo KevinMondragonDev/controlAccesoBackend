@@ -35,7 +35,7 @@ export class StudentsService {
     
   }
 
-   // todo: paginar
+   
    async findAll( paginationDTO: PaginationDto) {
          
     const {limit= 10 , offset = 0 } = paginationDTO;
@@ -73,6 +73,23 @@ export class StudentsService {
 
     return student;
 }
+
+async findOneTor(term: string) {
+  let student: Student;
+
+  if (term) {
+      // Buscando por FolioDeCredencial
+      student = await this.studentRepository.findOneBy({ FolioDeCredencial: term });
+      if(student === null){
+        student = await this.studentRepository.findOneBy({ Matricula: term });
+      }
+     
+  } 
+
+  return "nada";
+}
+
+
 
 async findOnePlain(term: string){
   const {images = [], ...rest} = await this.findOne(term);

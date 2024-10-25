@@ -10,5 +10,6 @@ import { Employee, EmployeeImage } from './entities';
     TypeOrmModule.forFeature([Employee , EmployeeImage])
   ],
   providers: [EmployeesService],
+  exports:[EmployeesService]
 })
 export class EmployeesModule {}

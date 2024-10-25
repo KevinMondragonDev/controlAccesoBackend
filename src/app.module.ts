@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommonModule } from './common/common.module';
 import { EmployeesModule } from './employees/employees.module';
+import { TorniqueteModule } from './torniquete/torniquete.module';
 
 
 
@@ -34,6 +35,7 @@ const DB_USERNAME="postgres";
     }),
     CommonModule,
     EmployeesModule,
+    TorniqueteModule,
     
 
   ],

@@ -22,7 +22,8 @@ export class StudentsController {
   findOne(@Param('term') term: string) {
     return this.studentsService.findOnePlain(term);
   }
-
+  
+  //TODO aun no creo el actualizar
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
     return this.studentsService.update(+id, updateStudentDto);
