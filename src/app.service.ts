@@ -6,3 +6,5 @@ export class AppService {
     return 'Hello World!';
   }
 }
+
+//TODO Aqui vamos a mandar el Folio de la credencial de alumnos y empleados

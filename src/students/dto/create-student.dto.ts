@@ -49,9 +49,6 @@ export class CreateStudentDto {
     @IsOptional()  // Opcional porque puede ser nulo
     FolioDeCredencial2?: string;
 
-    @IsString()
-    @IsOptional()
-    Comentario?: string;
 
     @IsString()
     @IsIn(['REVISAR', 'IMPRESA', 'NO IMPRIMIR'])
