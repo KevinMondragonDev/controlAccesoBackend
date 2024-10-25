@@ -9,6 +9,7 @@ import { EmployeesModule } from './employees/employees.module';
 
 
 
+
 const DB_PASSWORD="root";
 const DB_NAME="controlacceso";
 const DB_HOST="localhost";
@@ -33,7 +34,7 @@ const DB_USERNAME="postgres";
     }),
     CommonModule,
     EmployeesModule,
-
+    
 
   ],
   controllers: [AppController],

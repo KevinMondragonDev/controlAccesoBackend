@@ -42,7 +42,7 @@ export class CreateStudentDto {
 
     @IsString()
     @IsOptional()
-    @MinLength(10) // Opcional porque puede ser nulo
+    @MinLength(8) // Opcional porque puede ser nulo
     FolioDeCredencial?: string;
 
     @IsString()
