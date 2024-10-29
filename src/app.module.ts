@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { StudentsModule } from './students/students.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,37 +8,31 @@ import { EmployeesModule } from './employees/employees.module';
 import { TorniqueteModule } from './torniquete/torniquete.module';
 
 
-
-
-const DB_PASSWORD="root";
-const DB_NAME="controlacceso";
-const DB_HOST="localhost";
-const DB_PORT=5432;
-const DB_USERNAME="postgres";
-
 @Module({
   imports: [
-    StudentsModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type:'postgres',
-      host: DB_HOST,
-      port: DB_PORT,
-      database: DB_NAME,
-      username: DB_USERNAME,
-      password: DB_PASSWORD,
+      type: 'postgres',
+      host: process.env.DB_HOST || 'database', // Default to 'database'
+      port: +process.env.DB_PORT || 5432,
+      database: process.env.DB_NAME || 'controlacceso',
+      username: process.env.DB_USER || 'postgres',
+      password: process.env.DB_PASSWORD || 'root',
       autoLoadEntities: true,
-      //Este ultimo es para los cambios en las entidades se reflejen en las tablas
-      //No es comum que se use produccion
-      synchronize:true,
+      synchronize: true,
+      // Opciones de reintentos
+  extra: {
+    connectionTimeoutMillis: 2000, // Tiempo de espera de conexión en milisegundos
+  },
+  // Puedes ajustar retryAttempts según lo necesites
+  retryAttempts: 5,
+  retryDelay: 3000, // Tiempo entre reintentos en milisegundos
     }),
     CommonModule,
     EmployeesModule,
     TorniqueteModule,
-    
-
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+    StudentsModule
+  ]
 })
 export class AppModule {}
+
