@@ -1,37 +1,34 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { StudentImage } from './student-image.entity';
- 
-@Entity({name: 'students'})
-export class Student{
 
-    @PrimaryGeneratedColumn('uuid')
-    id_alumno: string;
+@Entity({ name: 'students' })
+export class Student {
 
-    @Column('text', {
+    @PrimaryColumn('text', {
         unique: true,
     })
-    Matricula:string;
+    Matricula: string;
 
     @Column()
-    NombreCompleto:string;
+    NombreCompleto: string;
 
     @Column()
-    Inclusion:boolean;
+    Inclusion: boolean;
 
     @Column()
-    Generacion:string;
+    Generacion: string;
 
     @Column()
-    Genero:string;
+    Genero: string;
 
     @Column()
-    Carrera:string;
+    Carrera: string;
 
     @Column()
-    Cuatrimestre:number;
+    Cuatrimestre: number;
 
     @Column()
-    Grupo:string;
+    Grupo: string;
 
     @Column('text', {
         unique: true,
@@ -46,46 +43,43 @@ export class Student{
     FolioDeCredencial2: string;
 
     @Column()
-    EstatusDeImpresion:string;
+    EstatusDeImpresion: string;
 
     @Column()
-    Estatus:boolean;
+    Estatus: boolean;
 
     @OneToMany(
         () => StudentImage,
         (studentImage) => studentImage.student,
-        {cascade:true, eager:true}
+        { cascade: true, eager: true }
     )
-    images?:StudentImage[];
-
+    images?: StudentImage[];
 
     @BeforeInsert()
-    checkSlugUpdate(){
+    checkSlugUpdate() {
         this.NombreCompleto = this.NombreCompleto
             .toUpperCase()
-            .replaceAll(' ','_')
-            .replaceAll("'",'')
+            .replaceAll(' ', '_')
+            .replaceAll("'", '');
 
         this.Generacion = this.Generacion
             .toUpperCase()
-            .replaceAll(' ','_')
-            .replaceAll("'",'')
-        
+            .replaceAll(' ', '_')
+            .replaceAll("'", '');
+
         this.Genero = this.Genero
             .toUpperCase()
-            .replaceAll(' ','_')
-            .replaceAll("'",'')
-        
+            .replaceAll(' ', '_')
+            .replaceAll("'", '');
+
         this.Carrera = this.Carrera
             .toUpperCase()
-            .replaceAll(' ','_')
-            .replaceAll("'",'')
-        
+            .replaceAll(' ', '_')
+            .replaceAll("'", '');
+
         this.EstatusDeImpresion = this.EstatusDeImpresion
             .toUpperCase()
-            .replaceAll(' ','_')
-            .replaceAll("'",'')
+            .replaceAll(' ', '_')
+            .replaceAll("'", '');
     }
 }
-
-

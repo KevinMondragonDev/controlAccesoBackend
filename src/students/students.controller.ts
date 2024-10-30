@@ -23,10 +23,9 @@ export class StudentsController {
     return this.studentsService.findOnePlain(term);
   }
   
-  //TODO aun no creo el actualizar
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateStudentDto: UpdateStudentDto) {
-    return this.studentsService.update(+id, updateStudentDto);
+      return this.studentsService.update(id, updateStudentDto); // Pasar id como string
   }
 
   @Delete(':term')

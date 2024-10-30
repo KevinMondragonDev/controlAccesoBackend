@@ -100,11 +100,32 @@ async findOnePlain(term: string){
   }
 }
 
-  update(id: number, updateStudentDto: UpdateStudentDto) {
+async update(id: string, updateStudentDto: UpdateStudentDto) { // Cambiar a string
+  const student = await this.studentRepository.findOne({
+      where: { Matricula: id }, // id ya es string
+      relations: ['images'],
+  });
 
-    //TODO Realizar el actualizar los alumnos
-    return `This action updates a #${id} student`;
+  if (!student) {
+      throw new NotFoundException(`Student with matricula ${id} not found`);
   }
+
+  // Actualiza los campos del estudiante
+  Object.assign(student, updateStudentDto);
+
+  // Manejar las imágenes si es necesario
+  if (updateStudentDto.images) {
+      student.images = updateStudentDto.images.map(image => {
+          return this.StudentImageRepository.create({ url: image });
+      });
+  }
+
+  // Guardar los cambios
+  await this.studentRepository.save(student);
+  return student;
+}
+
+
 
   async remove(term: string) {
     const {affected} = await this.studentRepository.delete({Matricula:term})

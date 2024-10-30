@@ -23,11 +23,13 @@ export class EmployeesController {
     return this.employeesService.findOne(term);
   }
 
-  @Patch(':id')
-  async update(@Param('id') id: number, @Body() updateEmployeeDto: UpdateEmployeeDto) {
-    return this.employeesService.update(id, updateEmployeeDto);
+  @Patch(':NumeroDeEmpleado')  // Cambia ':id' a ':NumeroDeEmpleado'
+  async update(
+    @Param('NumeroDeEmpleado') NumeroDeEmpleado: string,
+    @Body() updateEmployeeDto: UpdateEmployeeDto
+  ) {
+    return this.employeesService.update(NumeroDeEmpleado, updateEmployeeDto);
   }
-
   @Delete(':term')
   async remove(@Param('term') term: string) {
     return this.employeesService.remove(term);

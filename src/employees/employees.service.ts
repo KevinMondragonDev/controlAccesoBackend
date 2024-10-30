@@ -37,7 +37,7 @@ export class EmployeesService {
 
   async findOne(term: string) {
     let employee: Employee;
-
+    
     // Buscando por Número de Empleado
     
     employee = await this.employeeRepository.findOneBy({ FolioDeCredencial: term });
@@ -52,20 +52,19 @@ export class EmployeesService {
     return employee;
   }
 
-
-  async update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    const employee = await this.employeeRepository.preload({
-      id,
-      ...updateEmployeeDto,
-    });
+  async update(NumeroDeEmpleado: string, updateEmployeeDto: UpdateEmployeeDto) {
+    // Buscamos el empleado por su número de empleado
+    const employee = await this.employeeRepository.findOneBy({ NumeroDeEmpleado });
 
     if (!employee) {
-      throw new NotFoundException(`Employee with ID "${id}" not found`);
+      throw new NotFoundException(`Employee with NumeroDeEmpleado "${NumeroDeEmpleado}" not found`);
     }
 
+    // Asignamos los nuevos valores al empleado
+    Object.assign(employee, updateEmployeeDto);
+
     try {
-      await this.employeeRepository.save(employee);
-      return employee;
+      return await this.employeeRepository.save(employee);
     } catch (error) {
       throw new BadRequestException(error.detail);
     }

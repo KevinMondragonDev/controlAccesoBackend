@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsDateString, Matches, Length } from 'class-validator';
+import { IsString, IsOptional, IsDateString, Matches, Length, MinLength, IsIn } from 'class-validator';
 
 export class CreateEmployeeDto {
   @IsString()
@@ -15,11 +15,12 @@ export class CreateEmployeeDto {
   Nombre: string;
 
   @IsString()
-  @Length(3, 10) // Longitud de sangre ajustada
-  TipoDeSangre: string;
+  @IsOptional() // Longitud de sangre ajustada
+  TipoDeSangre?: string;
 
   @IsOptional()
   @IsString()
+  @IsIn(["ACTIVO", "INACTIVO"])
   Estatus?: string;
 
   @IsOptional()
@@ -68,6 +69,7 @@ export class CreateEmployeeDto {
 
   @IsOptional()
   @IsString()
+  @MinLength(8)
   FolioDeCredencial?: string;
 
   @IsOptional()

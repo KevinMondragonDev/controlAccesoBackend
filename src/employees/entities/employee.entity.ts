@@ -1,12 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
 import { EmployeeImage } from './employees-image.entity';
 
 @Entity('employees')
 export class Employee {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ type: 'varchar', length: 50 })
+  @PrimaryColumn({ type: 'varchar', length: 50, unique: true })
   NumeroDeEmpleado: string;
 
   @Column({ type: 'varchar', length: 50 })
@@ -21,10 +18,10 @@ export class Employee {
   @Column({ type: 'varchar', length: 10 })
   TipoDeSangre: string;
 
-  @Column({ type: 'varchar', length: 20, nullable: true })
+  @Column({ type: 'varchar', length: 10, nullable: true })
   Estatus?: string;
 
-  @Column({ type: 'varchar', length: 50, nullable: true })
+  @Column({ type: 'varchar', length: 50, nullable: true }) // Cambiado a varchar
   TipoDeContrato?: string;
 
   @Column({ type: 'varchar', length: 100 })
@@ -72,7 +69,7 @@ export class Employee {
   @OneToMany(
     () => EmployeeImage,
     (employeeImage) => employeeImage.employee,
-    {cascade:true, eager:true}
+    { cascade: true, eager: true }
   )
-  images?:EmployeeImage[];
+  images?: EmployeeImage[];
 }
