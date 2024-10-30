@@ -2,10 +2,6 @@ import { IsArray, IsBoolean, IsIn, IsInt, IsNotEmpty, IsOptional, IsString, IsUU
 
 export class CreateStudentDto {
 
-    @IsUUID()
-    @IsOptional()  // Opcional porque será generado automáticamente
-    id_alumno?: string;
-
     @IsString()
     @IsNotEmpty()
     @MinLength(7)
@@ -15,9 +11,9 @@ export class CreateStudentDto {
     @IsNotEmpty()
     NombreCompleto: string;
 
-    @IsBoolean()
-    @IsNotEmpty()
-    Inclusion: boolean;
+    @IsString()
+    @IsOptional()
+    Inclusion: string;
 
     @IsString()
     @IsNotEmpty()

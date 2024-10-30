@@ -12,10 +12,10 @@ export class Student {
     @Column()
     NombreCompleto: string;
 
-    @Column('boolean', {
+    @Column('text', {
         nullable: true,  // Allow null values
     })
-    Inclusion: boolean;
+    Inclusion: string;
 
     @Column('text', {
         nullable: true,  // Allow null values
@@ -55,7 +55,6 @@ export class Student {
     FolioDeCredencial2: string;
 
     @Column('text', {
-        unique: true,
         nullable: true,  // Allow null values
     })
     EstatusDeImpresion: string;

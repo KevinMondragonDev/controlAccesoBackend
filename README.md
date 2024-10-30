@@ -100,12 +100,12 @@ DEFAULT_LIMIT=7
 
 ## Manera de hacer despliegue 
 
-1. Crear el archivo ``` .env.prod ```
+1. Crear el archivo ``` .env ```
 2. Llenar las variables de entorno de prod
 3. Crear la imagen 
 ```
 
- docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+ docker-compose -f docker-compose.prod.yaml --env-file .env up --build
 
 ```
 

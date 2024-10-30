@@ -3,7 +3,7 @@ version: '3.8'
 services:
   database:
     image: postgres:latest
-    container_name: postgres_db
+    container_name: dataBaseAcceso
     environment:
       POSTGRES_DB: controlacceso
       POSTGRES_USER: postgres
@@ -15,7 +15,7 @@ services:
 
   app:
     build: .
-    container_name: nestjs_app
+    container_name: ControlAcceso
     ports:
       - "3000:3000"
     environment:
@@ -28,4 +28,4 @@ services:
       - database
 
 volumes:
-  postgres_data: {}
+  postgres_data: 

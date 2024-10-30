@@ -13,7 +13,7 @@ async function bootstrap() {
   );
   app.setGlobalPrefix("/controlAcceso")
   await app.listen(process.env.PORT || 3000);
-  logger.log(`App running on ${process.env.PORT}`)
+  logger.log(`App running on ${process.env.PORT || 3000}`)
 
 }
 bootstrap();
