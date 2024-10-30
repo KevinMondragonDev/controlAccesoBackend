@@ -13,8 +13,8 @@ import { TorniqueteModule } from './torniquete/torniquete.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      //host: process.env.DB_HOST || 'database', // Default to 'database'
+      //host: 'localhost',
+      host: process.env.DB_HOST || 'database', // Default to 'database'
       port: +process.env.DB_PORT || 5432,
       database: process.env.DB_NAME || 'controlacceso',
       username: process.env.DB_USER || 'postgres',
