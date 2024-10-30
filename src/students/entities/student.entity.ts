@@ -12,72 +12,77 @@ export class Student {
     @Column()
     NombreCompleto: string;
 
-    @Column()
+    @Column('boolean', {
+        nullable: true,  // Allow null values
+    })
     Inclusion: boolean;
 
-    @Column()
+    @Column('text', {
+        nullable: true,  // Allow null values
+    })
     Generacion: string;
 
-    @Column()
+    @Column('text', {
+        nullable: true,  // Allow null values
+    })
     Genero: string;
 
-    @Column()
+    @Column('text', {
+        nullable: true,  // Allow null values
+    })
     Carrera: string;
 
-    @Column()
+    @Column('int', {  // Change 'number' to 'int'
+        nullable: true,  // Allow null values
+    })
     Cuatrimestre: number;
 
-    @Column()
+    @Column('text', {
+        nullable: true,  // Allow null values
+    })
     Grupo: string;
 
     @Column('text', {
         unique: true,
-        nullable: true,  // Permitir valores nulos
+        nullable: true,  // Allow null values
     })
     FolioDeCredencial: string;
-    
+
     @Column('text', {
         unique: true,
-        nullable: true,  // Permitir valores nulos
+        nullable: true,  // Allow null values
     })
     FolioDeCredencial2: string;
 
-    @Column()
+    @Column('text', {
+        unique: true,
+        nullable: true,  // Allow null values
+    })
     EstatusDeImpresion: string;
 
-    @Column()
+    @Column('boolean', {
+        nullable: true,  // Allow null values
+    })
     Estatus: boolean;
 
     @OneToMany(
         () => StudentImage,
         (studentImage) => studentImage.student,
-        { cascade: true, eager: true }
+        { cascade: true, eager: false }  // Consider changing to eager: false
     )
     images?: StudentImage[];
 
     @BeforeInsert()
     checkSlugUpdate() {
-        this.NombreCompleto = this.NombreCompleto
-            .toUpperCase()
-            .replaceAll(' ', '_')
-            .replaceAll("'", '');
+        this.NombreCompleto = this.normalizeString(this.NombreCompleto);
+        this.Generacion = this.normalizeString(this.Generacion);
+        this.Genero = this.normalizeString(this.Genero);
+        this.Carrera = this.normalizeString(this.Carrera);
+        this.EstatusDeImpresion = this.normalizeString(this.EstatusDeImpresion);
+    }
 
-        this.Generacion = this.Generacion
-            .toUpperCase()
-            .replaceAll(' ', '_')
-            .replaceAll("'", '');
-
-        this.Genero = this.Genero
-            .toUpperCase()
-            .replaceAll(' ', '_')
-            .replaceAll("'", '');
-
-        this.Carrera = this.Carrera
-            .toUpperCase()
-            .replaceAll(' ', '_')
-            .replaceAll("'", '');
-
-        this.EstatusDeImpresion = this.EstatusDeImpresion
+    private normalizeString(input: string): string {
+        return input
             .toUpperCase()
             .replaceAll(' ', '_')
             .replaceAll("'", '');
