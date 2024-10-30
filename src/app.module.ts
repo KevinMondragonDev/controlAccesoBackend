@@ -12,13 +12,18 @@ import { TorniqueteModule } from './torniquete/torniquete.module';
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      //host: process.env.DB_HOST || 'database', // Default to 'database'
-      port: +process.env.DB_PORT || 5432,
-      database: process.env.DB_NAME || 'controlacceso',
-      username: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASSWORD || 'root',
+     type: 'postgres',
+     host: process.env.HOST,
+       //host: process.env.DB_HOST || 'database', // Default to 'database'
+      port: +process.env.DB_PORT ,
+      database: process.env.DB_NAME ,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+
+      //port: +process.env.DB_PORT || 5432,
+      //database: process.env.DB_NAME || 'controlacceso',
+      ///username: process.env.DB_USER || 'postgres',
+      //password: process.env.DB_PASSWORD || 'root',
       autoLoadEntities: true,
       synchronize: true,
       // Opciones de reintentos
