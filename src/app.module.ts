@@ -13,7 +13,7 @@ import { TorniqueteModule } from './torniquete/torniquete.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
      type: 'postgres',
-     host: process.env.HOST || "database",
+     host: process.env.HOST || "host.docker.internal",
        //host: process.env.DB_HOST || 'database', // Default to 'database'
       //port: +process.env.DB_PORT ,
       //database: process.env.DB_NAME ,

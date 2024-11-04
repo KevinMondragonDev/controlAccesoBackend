@@ -45,55 +45,52 @@ $ pnpm run start:dev
 $ pnpm run start:prod
 ```
 
-## Test
 
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
-
-## Ejecutar en desarrollo
-
-1. Clonar repositorio
-2. Ejecutar
-
-
-```
-pnpm install
-```
-
-3. Tener Nest CLI instalado
+### Extra: Tener Nest CLI instalado
 
 
 ```
 npm i -g @nestjs/cli
 ```
 
-4. Levantar la base de datos
+## Ejecutar en desarrollo
+
+1. Clonar repositorio
+```
+  git clone <Name del repositorio>
+```
+
+
+2. Dentro del directorio, instalamos las dependencias
+
+```
+pnpm install
+```
+
+
+3. Levantar la base de datos con el proyecto en Docker (Dockerizar)
 
 ```
 docker-compose up -d
 ```
 
-5. Reconstruir la base de datos con la semilla
-```
-http://localhost:3000/api/v2/seed
 
-```
 
 ## Este Proyecto utiliza un __.env__
 
 ```
-NODE_ENV=development
-MONGODB=mongodb://localhost:27017/nest-pokemon
+DB_PORT=5432,
+DB_NAME="controlacceso"
+DB_USER="postgres"
+DB_PASSWORD="root"
 PORT=3000
-DEFAULT_LIMIT=7
+
+#Si estas en desarrollo usa
+HOST="localhost"
+
+#Si vas a crear el contenedor para la RaspBerry o Servidor
+#HOST="database"
+
 ```
 
 
@@ -120,5 +117,6 @@ DEFAULT_LIMIT=7
 ## STACK Utilizado
 
 
-* MongoDB
+* Posgrest
+* Docker / Docker Compose
 * Nest
